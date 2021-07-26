@@ -1,0 +1,9 @@
+---
+name: BurgerMorphs
+version: 1.0.0
+main: Heisenburger69\BurgerMorphs\Main
+api: 3.21.0
+author: Heisenburger69
+description: Plugin that allows a player to morph into mobs
+website: "https://github.com/Heisenburger69"
+...
