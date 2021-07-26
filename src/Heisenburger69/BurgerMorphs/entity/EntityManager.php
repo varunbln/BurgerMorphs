@@ -2,8 +2,6 @@
 
 namespace Heisenburger69\BurgerMorphs\entity;
 
-use Heisenburger69\BurgerMorphs\entity\types\Zombie;
-use Heisenburger69\BurgerMorphs\utils\Utils;
 use Heisenburger69\BurgerMorphs\entity\types\Bat;
 use Heisenburger69\BurgerMorphs\entity\types\Bee;
 use Heisenburger69\BurgerMorphs\entity\types\Blaze;
@@ -46,8 +44,10 @@ use Heisenburger69\BurgerMorphs\entity\types\Vindicator;
 use Heisenburger69\BurgerMorphs\entity\types\Witch;
 use Heisenburger69\BurgerMorphs\entity\types\WitherSkeleton;
 use Heisenburger69\BurgerMorphs\entity\types\Wolf;
+use Heisenburger69\BurgerMorphs\entity\types\Zombie;
 use Heisenburger69\BurgerMorphs\entity\types\ZombiePigman;
 use Heisenburger69\BurgerMorphs\entity\types\ZombieVillager;
+use Heisenburger69\BurgerMorphs\utils\Utils;
 use pocketmine\entity\Entity;
 use pocketmine\Player;
 
@@ -86,7 +86,6 @@ class EntityManager
         Entity::registerEntity(Rabbit::class, false, ['morph_rabbit']);
         Entity::registerEntity(Ravager::class, false, ['morph_ravager']);
         Entity::registerEntity(Sheep::class, false, ['morph_sheep']);
-        Entity::registerEntity(Shulker::class, false, ['morph_shulker']);
         Entity::registerEntity(Silverfish::class, false, ['morph_silverfish']);
         Entity::registerEntity(Skeleton::class, false, ['morph_skeleton']);
         Entity::registerEntity(Slime::class, false, ['morph_slime']);

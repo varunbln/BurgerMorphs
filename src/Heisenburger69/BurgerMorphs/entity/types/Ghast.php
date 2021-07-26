@@ -2,13 +2,10 @@
 
 namespace Heisenburger69\BurgerMorphs\entity\types;
 
-use Heisenburger69\BurgerMorphs\entity\MorphEntity;use pocketmine\item\Item;
-use pocketmine\Player;
-use pocketmine\item\enchantment\Enchantment;
-use pocketmine\event\entity\EntityDamageByEntityEvent;
-use function mt_rand;
+use Heisenburger69\BurgerMorphs\entity\MorphEntity;
 
-class Ghast extends MorphEntity {
+class Ghast extends MorphEntity
+{
 
     public const NETWORK_ID = self::GHAST;
 
@@ -17,7 +14,8 @@ class Ghast extends MorphEntity {
     public $length = 6;
     public $height = 6;
 
-    public function getName(): string{
+    public function getName(): string
+    {
         return "Ghast";
     }
 }

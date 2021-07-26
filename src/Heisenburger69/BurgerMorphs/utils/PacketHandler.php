@@ -12,11 +12,11 @@ class PacketHandler
     {
         $pk = new MoveActorAbsolutePacket();
         $pk->entityRuntimeId = $entity->getId();
-        $pk->position = $originalPacket->position->subtract(0, 1.65, 0);
+        $pk->position = $originalPacket->position->subtract(0, 1.6, 0);
         $pk->xRot = $originalPacket->pitch;
         $pk->yRot = $originalPacket->yaw;
         $pk->zRot = $originalPacket->yaw;
-        if($originalPacket->mode === MovePlayerPacket::MODE_TELEPORT){
+        if ($originalPacket->mode === MovePlayerPacket::MODE_TELEPORT) {
             $pk->flags |= MoveActorAbsolutePacket::FLAG_TELEPORT;
         }
         $entity->level->broadcastPacketToViewers($entity, $pk);

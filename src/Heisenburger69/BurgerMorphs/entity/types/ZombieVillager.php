@@ -3,7 +3,6 @@
 namespace Heisenburger69\BurgerMorphs\entity\types;
 
 use pocketmine\entity\Zombie;
-use function mt_rand;
 
 class ZombieVillager extends Zombie
 {

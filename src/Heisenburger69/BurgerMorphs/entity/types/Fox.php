@@ -4,11 +4,7 @@ namespace Heisenburger69\BurgerMorphs\entity\types;
 
 use Heisenburger69\BurgerMorphs\entity\MorphEntity;
 use Heisenburger69\BurgerMorphs\pocketmine\AddActorPacket;
-use pocketmine\event\entity\EntityDamageByEntityEvent;
-use pocketmine\item\enchantment\Enchantment;
-use pocketmine\item\Item;
 use pocketmine\Player;
-use function mt_rand;
 
 class Fox extends MorphEntity
 {
