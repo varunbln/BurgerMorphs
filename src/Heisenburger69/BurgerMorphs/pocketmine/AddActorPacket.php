@@ -125,7 +125,7 @@ class AddActorPacket extends VanillaAddActorPacket
         ($this->buffer .= (\pack("g", $this->headYaw)));
 
         $this->putUnsignedVarInt(count($this->attributes));
-        foreach($this->attributes as $attribute){
+        foreach ($this->attributes as $attribute) {
             $this->putString($attribute->getName());
             ($this->buffer .= (\pack("g", $attribute->getMinValue())));
             ($this->buffer .= (\pack("g", $attribute->getValue())));
@@ -134,7 +134,7 @@ class AddActorPacket extends VanillaAddActorPacket
 
         $this->putEntityMetadata($this->metadata);
         $this->putUnsignedVarInt(count($this->links));
-        foreach($this->links as $link){
+        foreach ($this->links as $link) {
             $this->putEntityLink($link);
         }
     }

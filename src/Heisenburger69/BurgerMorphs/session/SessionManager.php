@@ -15,7 +15,8 @@ class SessionManager
     /**
      * @param Player $player
      */
-    public static function startSession(Player $player): void {
+    public static function startSession(Player $player): void
+    {
         $crystalPlayer = new MorphPlayer($player);
         self::$sessions = array_merge(self::$sessions, [strtolower($crystalPlayer->getPlayer()->getName()) => $crystalPlayer]);
     }
@@ -32,8 +33,9 @@ class SessionManager
      * @param string $playerName
      * @return MorphPlayer|null
      */
-    public static function getSessionByName(string $playerName) {
-        if(isset(self::$sessions[strtolower($playerName)])) {
+    public static function getSessionByName(string $playerName)
+    {
+        if (isset(self::$sessions[strtolower($playerName)])) {
             return self::$sessions[strtolower($playerName)];
         }
         return null;
@@ -43,11 +45,13 @@ class SessionManager
      * @param Player $player
      * @return MorphPlayer|null
      */
-    public static function getSessionByPlayer(Player $player) {
+    public static function getSessionByPlayer(Player $player)
+    {
         return self::getSessionByName($player->getName());
     }
-    
-    public static function endAllSessions(): void {
+
+    public static function endAllSessions(): void
+    {
         foreach (Server::getInstance()->getOnlinePlayers() as $player) {
             self::endSession($player);
         }
@@ -56,8 +60,9 @@ class SessionManager
     /**
      * @param Player $player
      */
-    public static function endSession(Player $player): void {
-        if(($session = self::getSessionByPlayer($player)) !== null) {
+    public static function endSession(Player $player): void
+    {
+        if (($session = self::getSessionByPlayer($player)) !== null) {
             $session->unMorph();
             unset(self::$sessions[strtolower($player->getName())]);
         }

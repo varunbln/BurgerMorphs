@@ -3,18 +3,10 @@
 namespace Heisenburger69\BurgerMorphs\entity\types;
 
 use Heisenburger69\BurgerMorphs\entity\MorphEntity;
-use pocketmine\event\entity\{
-    EntityDamageByEntityEvent, EntityDamageEvent
-};
-use pocketmine\item\enchantment\Enchantment;
-use pocketmine\item\Item;
-use pocketmine\nbt\tag\{
-    IntTag
-};
-use pocketmine\Player;
-use function mt_rand;
+use pocketmine\nbt\tag\{IntTag};
 
-class Rabbit extends MorphEntity {
+class Rabbit extends MorphEntity
+{
 
     public const NETWORK_ID = self::RABBIT;
 
@@ -25,9 +17,10 @@ class Rabbit extends MorphEntity {
     public $width = 0.4;
     public $height = 0.5;
 
-    public function initEntity(): void{
+    public function initEntity(): void
+    {
         $type = $this->getRandomRabbitType();
-        if(!$this->namedtag->hasTag(self::TAG_RABBIT_TYPE, IntTag::class)){
+        if (!$this->namedtag->hasTag(self::TAG_RABBIT_TYPE, IntTag::class)) {
             $this->namedtag->setInt(self::TAG_RABBIT_TYPE, $type);
         }
 
@@ -36,20 +29,22 @@ class Rabbit extends MorphEntity {
         parent::initEntity();
     }
 
-    public function getRandomRabbitType(): int{
+    public function getRandomRabbitType(): int
+    {
         $arr = [0, 1, 2, 3, 4, 5, 99];
 
         return $arr[array_rand($arr)];
     }
 
-    public function getName(): string{
+    public function getName(): string
+    {
         return "Rabbit";
     }
 
     /**
      * @param int $type
      */
-    public function setRabbitType(int $type):void
+    public function setRabbitType(int $type): void
     {
         $this->namedtag->setInt(self::TAG_RABBIT_TYPE, $type);
     }

@@ -17,7 +17,7 @@ class Main extends PluginBase
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->getServer()->getCommandMap()->registerAll("burgermorphs",
             [
-               new MorphCommand("morph", "Morph into an entity!"),
+                new MorphCommand("morph", "Morph into an entity!"),
             ]);
     }
 

@@ -44,9 +44,9 @@ class MorphPlayer
     {
         $this->unMorph();
         $entity = EntityManager::createMorphEntity($this->player, $type);
-        if(!$entity instanceof MorphEntity) return false;
+        if (!$entity instanceof MorphEntity) return false;
         foreach (Server::getInstance()->getOnlinePlayers() as $player) {
-            if($player->getName() !== $this->player->getName()) {
+            if ($player->getName() !== $this->player->getName()) {
                 $entity->spawnTo($player);
                 $player->hidePlayer($this->player);
             }
@@ -60,11 +60,11 @@ class MorphPlayer
      */
     public function unMorph(): bool
     {
-        if($this->morphEntity === null) return false;
+        if ($this->morphEntity === null) return false;
         $this->player->teleport($this->morphEntity);
         $this->morphEntity->flagForDespawn();
         foreach (Server::getInstance()->getOnlinePlayers() as $player) {
-            if($player->getName() !== $this->player->getName()) {
+            if ($player->getName() !== $this->player->getName()) {
                 $player->showPlayer($this->player);
             }
         }

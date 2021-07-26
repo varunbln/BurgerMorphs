@@ -12,7 +12,8 @@ class Blaze extends MorphEntity
     public $width = 0.6;
     public $height = 1.8;
 
-    public function getName(): string{
+    public function getName(): string
+    {
         return "Blaze";
     }
 

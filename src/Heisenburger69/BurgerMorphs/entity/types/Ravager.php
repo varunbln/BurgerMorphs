@@ -2,9 +2,8 @@
 
 namespace Heisenburger69\BurgerMorphs\entity\types;
 
-use Heisenburger69\BurgerMorphs\pocketmine\AddActorPacket;
 use Heisenburger69\BurgerMorphs\entity\MorphEntity;
-use pocketmine\item\Item;
+use Heisenburger69\BurgerMorphs\pocketmine\AddActorPacket;
 use pocketmine\Player;
 
 class Ravager extends MorphEntity
