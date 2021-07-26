@@ -42,6 +42,7 @@ class MorphPlayer
      */
     public function morph(string $type): bool
     {
+        $this->unMorph();
         $entity = EntityManager::createMorphEntity($this->player, $type);
         if(!$entity instanceof MorphEntity) return false;
         foreach (Server::getInstance()->getOnlinePlayers() as $player) {
