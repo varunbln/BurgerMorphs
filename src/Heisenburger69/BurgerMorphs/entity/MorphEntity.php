@@ -36,19 +36,8 @@ class MorphEntity extends Entity
         return false;
     }
 
-//    protected function sendSpawnPacket(Player $player) : void{
-//        parent::sendSpawnPacket($player);
-//        if($this->player !== null && $player === $this->player){
-//            $pk = new SetActorLinkPacket();
-//            $pk->link = new EntityLink($player->getId(), $this->getId(), EntityLink::TYPE_RIDER, true, false);
-//            $this->setGenericFlag(self::DATA_FLAG_RIDING, false);
-//            $player->sendDataPacket($pk);
-//        }
-//    }
-//
-//    protected function updateMovement(bool $teleport = true) : void{
-//        if($this->player === null) return;
-//        $this->setPositionAndRotation($this->player, $this->player->getYaw(), $this->player->getPitch());
-//        parent::updateMovement($teleport);
-//    }
+    protected function broadcastMotion(): void
+    {
+
+    }
 }
