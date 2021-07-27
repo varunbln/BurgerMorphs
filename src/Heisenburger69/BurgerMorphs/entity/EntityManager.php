@@ -40,6 +40,7 @@ use Heisenburger69\BurgerMorphs\entity\types\Slime;
 use Heisenburger69\BurgerMorphs\entity\types\SnowGolem;
 use Heisenburger69\BurgerMorphs\entity\types\Spider;
 use Heisenburger69\BurgerMorphs\entity\types\Stray;
+use Heisenburger69\BurgerMorphs\entity\types\Turtle;
 use Heisenburger69\BurgerMorphs\entity\types\Vex;
 use Heisenburger69\BurgerMorphs\entity\types\Vindicator;
 use Heisenburger69\BurgerMorphs\entity\types\Witch;
@@ -97,6 +98,7 @@ class EntityManager
         Entity::registerEntity(SnowGolem::class, false, ['morph_snowgolem']);
         Entity::registerEntity(Spider::class, false, ['morph_spider']);
         Entity::registerEntity(Stray::class, false, ['morph_stray']);
+        Entity::registerEntity(Turtle::class, false, ['morph_turtle']);
         Entity::registerEntity(Vex::class, false, ['morph_vex']);
         Entity::registerEntity(Vindicator::class, false, ['morph_vindicator']);
         Entity::registerEntity(Witch::class, false, ['morph_witch']);
@@ -119,6 +121,11 @@ class EntityManager
         } else {
             $morphName = str_replace("dinnerbone_", "", $morphName);
         }
-        return Entity::createEntity(Utils::convertTypeToMorphSaveId($morphName), $player->level, Entity::createBaseNBT($player, null, $player->getYaw(), $player->getPitch()), $player, $dinnerbone);
+        $baby = false;
+        if(strpos($morphName, "baby_") !== false) {
+            $baby = true;
+            $morphName = str_replace("baby_", "", $morphName);
+        }
+        return Entity::createEntity(Utils::convertTypeToMorphSaveId($morphName), $player->level, Entity::createBaseNBT($player, null, $player->getYaw(), $player->getPitch()), $player, $dinnerbone, $baby);
     }
 }

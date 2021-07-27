@@ -1,6 +1,6 @@
 <?php
 
-namespace Heisenburger69\BurgerMorphs\utils;
+namespace Heisenburger69\BurgerMorphs\pocketmine;
 
 use Heisenburger69\BurgerMorphs\entity\MorphEntity;
 use pocketmine\network\mcpe\protocol\MoveActorAbsolutePacket;

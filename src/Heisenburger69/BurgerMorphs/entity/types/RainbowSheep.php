@@ -9,9 +9,9 @@ use pocketmine\Player;
 class RainbowSheep extends Sheep
 {
 
-    public function __construct(Level $level, CompoundTag $nbt, Player $player, bool $dinnerbone)
+    public function __construct(Level $level, CompoundTag $nbt, Player $player, bool $dinnerbone, bool $baby)
     {
-        parent::__construct($level, $nbt, $player, $dinnerbone);
+        parent::__construct($level, $nbt, $player, $dinnerbone, $baby);
         $this->setNameTagVisible(false);
         $this->setNameTag("jeb_");
     }

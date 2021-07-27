@@ -15,7 +15,7 @@ class MorphEntity extends Entity
      */
     private Player $player;
 
-    public function __construct(Level $level, CompoundTag $nbt, Player $player, bool $dinnerbone)
+    public function __construct(Level $level, CompoundTag $nbt, Player $player, bool $dinnerbone, bool $baby)
     {
         parent::__construct($level, $nbt);
         $this->player = $player;
@@ -23,6 +23,9 @@ class MorphEntity extends Entity
             $this->setNameTagVisible(false);
             $this->setNameTag("Dinnerbone");
         }
+        $this->getDataPropertyManager()->setFloat(self::DATA_BOUNDING_BOX_WIDTH, $player->getDataPropertyManager()->getFloat(self::DATA_BOUNDING_BOX_WIDTH));
+        $this->getDataPropertyManager()->setFloat(self::DATA_BOUNDING_BOX_HEIGHT, $player->getDataPropertyManager()->getFloat(self::DATA_BOUNDING_BOX_HEIGHT));
+        if($baby) $this->setScale(0.5);
     }
 
     /**

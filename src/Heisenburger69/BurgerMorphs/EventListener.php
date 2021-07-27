@@ -2,14 +2,18 @@
 
 namespace Heisenburger69\BurgerMorphs;
 
+use Heisenburger69\BurgerMorphs\entity\MorphEntity;
 use Heisenburger69\BurgerMorphs\session\MorphPlayer;
 use Heisenburger69\BurgerMorphs\session\SessionManager;
-use Heisenburger69\BurgerMorphs\utils\PacketHandler;
+use Heisenburger69\BurgerMorphs\pocketmine\PacketHandler;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\mcpe\protocol\MovePlayerPacket;
+use pocketmine\Player;
 
 class EventListener implements Listener
 {
@@ -37,6 +41,27 @@ class EventListener implements Listener
             if ($session === null) return;
             if ($session->getMorphEntity() === null) return;
             PacketHandler::sendMovePacket($session->getMorphEntity(), $pk);
+        }
+    }
+
+    /**
+     * @param EntityDamageByEntityEvent $event
+     * @priority MONITOR
+     */
+    public function onAttacked(EntityDamageByEntityEvent $event): void
+    {
+        if($event->isCancelled()) return;
+        $attacked = $event->getEntity();
+        $attacker = $event->getDamager();
+        if($attacked instanceof MorphEntity) {
+            $player = $attacked->getPlayer();
+            $session = SessionManager::getSessionByPlayer($player);
+            $session->unMorph();
+            $player->attack(new EntityDamageByEntityEvent($attacker, $player, $event->getCause(), $event->getBaseDamage(), $event->getModifiers(), $event->getKnockBack()));
+        }
+        if($attacker instanceof Player) {
+            $session = SessionManager::getSessionByPlayer($attacker);
+            $session->unMorph();
         }
     }
 }
