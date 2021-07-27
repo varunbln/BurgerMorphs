@@ -30,6 +30,7 @@ use Heisenburger69\BurgerMorphs\entity\types\Parrot;
 use Heisenburger69\BurgerMorphs\entity\types\Pig;
 use Heisenburger69\BurgerMorphs\entity\types\PolarBear;
 use Heisenburger69\BurgerMorphs\entity\types\Rabbit;
+use Heisenburger69\BurgerMorphs\entity\types\RainbowSheep;
 use Heisenburger69\BurgerMorphs\entity\types\Ravager;
 use Heisenburger69\BurgerMorphs\entity\types\Sheep;
 use Heisenburger69\BurgerMorphs\entity\types\Shulker;
@@ -50,6 +51,9 @@ use Heisenburger69\BurgerMorphs\entity\types\ZombieVillager;
 use Heisenburger69\BurgerMorphs\utils\Utils;
 use pocketmine\entity\Entity;
 use pocketmine\Player;
+use function str_replace;
+use function strpos;
+use function var_dump;
 
 class EntityManager
 {
@@ -85,6 +89,7 @@ class EntityManager
         Entity::registerEntity(PolarBear::class, false, ['morph_polarbear']);
         Entity::registerEntity(Rabbit::class, false, ['morph_rabbit']);
         Entity::registerEntity(Ravager::class, false, ['morph_ravager']);
+        Entity::registerEntity(RainbowSheep::class, false, ['morph_rainbowsheep']);
         Entity::registerEntity(Sheep::class, false, ['morph_sheep']);
         Entity::registerEntity(Silverfish::class, false, ['morph_silverfish']);
         Entity::registerEntity(Skeleton::class, false, ['morph_skeleton']);
@@ -108,6 +113,12 @@ class EntityManager
      */
     public static function createMorphEntity(Player $player, string $morphName): ?Entity
     {
-        return Entity::createEntity(Utils::convertTypeToMorphSaveId($morphName), $player->level, Entity::createBaseNBT($player, null, $player->getYaw(), $player->getPitch()), $player);
+        $dinnerbone = true;
+        if(strpos($morphName, "dinnerbone_") === false) {
+            $dinnerbone = false;
+        } else {
+            $morphName = str_replace("dinnerbone_", "", $morphName);
+        }
+        return Entity::createEntity(Utils::convertTypeToMorphSaveId($morphName), $player->level, Entity::createBaseNBT($player, null, $player->getYaw(), $player->getPitch()), $player, $dinnerbone);
     }
 }

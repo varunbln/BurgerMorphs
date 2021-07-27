@@ -2,6 +2,7 @@
 
 namespace Heisenburger69\BurgerMorphs;
 
+use Heisenburger69\BurgerMorphs\session\MorphPlayer;
 use Heisenburger69\BurgerMorphs\session\SessionManager;
 use Heisenburger69\BurgerMorphs\utils\PacketHandler;
 use pocketmine\event\Listener;
@@ -14,7 +15,12 @@ class EventListener implements Listener
 {
     public function onJoin(PlayerJoinEvent $event): void
     {
-        SessionManager::startSession($event->getPlayer());
+        $player = $event->getPlayer();
+        foreach (SessionManager::getAllSessions() as $session) {
+            /** @var MorphPlayer $session */
+            if($session->getMorphEntity() !== null) $player->hidePlayer($session->getPlayer());
+        }
+        SessionManager::startSession($player);
     }
 
     public function onQuit(PlayerQuitEvent $event): void
@@ -30,7 +36,6 @@ class EventListener implements Listener
             $session = SessionManager::getSessionByPlayer($player);
             if ($session === null) return;
             if ($session->getMorphEntity() === null) return;
-            $event->setCancelled();
             PacketHandler::sendMovePacket($session->getMorphEntity(), $pk);
         }
     }

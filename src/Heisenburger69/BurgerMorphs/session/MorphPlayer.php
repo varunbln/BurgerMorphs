@@ -61,7 +61,6 @@ class MorphPlayer
     public function unMorph(): bool
     {
         if ($this->morphEntity === null) return false;
-        $this->player->teleport($this->morphEntity);
         $this->morphEntity->flagForDespawn();
         foreach (Server::getInstance()->getOnlinePlayers() as $player) {
             if ($player->getName() !== $this->player->getName()) {

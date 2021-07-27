@@ -24,9 +24,7 @@ class Rabbit extends MorphEntity
             $this->namedtag->setInt(self::TAG_RABBIT_TYPE, $type);
         }
 
-        $this->setMaxHealth(3);
         $this->getDataPropertyManager()->setByte(self::DATA_RABBIT_TYPE, $type);
-        parent::initEntity();
     }
 
     public function getRandomRabbitType(): int
@@ -39,13 +37,5 @@ class Rabbit extends MorphEntity
     public function getName(): string
     {
         return "Rabbit";
-    }
-
-    /**
-     * @param int $type
-     */
-    public function setRabbitType(int $type): void
-    {
-        $this->namedtag->setInt(self::TAG_RABBIT_TYPE, $type);
     }
 }

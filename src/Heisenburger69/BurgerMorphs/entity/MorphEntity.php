@@ -6,6 +6,7 @@ use pocketmine\entity\Entity;
 use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\Player;
+use function var_dump;
 
 class MorphEntity extends Entity
 {
@@ -14,10 +15,14 @@ class MorphEntity extends Entity
      */
     private Player $player;
 
-    public function __construct(Level $level, CompoundTag $nbt, Player $player)
+    public function __construct(Level $level, CompoundTag $nbt, Player $player, bool $dinnerbone)
     {
         parent::__construct($level, $nbt);
         $this->player = $player;
+        if($dinnerbone) {
+            $this->setNameTagVisible(false);
+            $this->setNameTag("Dinnerbone");
+        }
     }
 
     /**
