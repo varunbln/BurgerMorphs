@@ -3,12 +3,12 @@
 namespace Heisenburger69\BurgerMorphs\entity;
 
 use Heisenburger69\BurgerMorphs\Main;
-use pocketmine\entity\Entity;
+use pocketmine\entity\Living;
 use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\Player;
 
-class MorphEntity extends Entity
+class MorphEntity extends Living
 {
     /**
      * @var Player
@@ -46,8 +46,8 @@ class MorphEntity extends Entity
         return false;
     }
 
-    protected function broadcastMotion(): void
+    public function getName(): string
     {
-
+        return "Morph Entity";
     }
 }

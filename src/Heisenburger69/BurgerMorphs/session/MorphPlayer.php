@@ -101,7 +101,7 @@ class MorphPlayer
 
     public function sendQueuedPackets(): void
     {
-        if(count($this->queuedPackets) > 0) Server::getInstance()->batchPackets($this->getMorphEntity()->getViewers(), $this->queuedPackets);
+        if(count($this->queuedPackets) > 0 && $this->player !== null) Server::getInstance()->batchPackets($this->getMorphEntity()->getViewers(), $this->queuedPackets);
         $this->queuedPackets = [];
     }
 

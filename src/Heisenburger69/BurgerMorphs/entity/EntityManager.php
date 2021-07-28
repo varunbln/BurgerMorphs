@@ -11,6 +11,7 @@ use Heisenburger69\BurgerMorphs\entity\types\Cow;
 use Heisenburger69\BurgerMorphs\entity\types\Creeper;
 use Heisenburger69\BurgerMorphs\entity\types\Donkey;
 use Heisenburger69\BurgerMorphs\entity\types\ElderGuardian;
+use Heisenburger69\BurgerMorphs\entity\types\EnderDragon;
 use Heisenburger69\BurgerMorphs\entity\types\Enderman;
 use Heisenburger69\BurgerMorphs\entity\types\Endermite;
 use Heisenburger69\BurgerMorphs\entity\types\Evoker;
@@ -70,6 +71,7 @@ class EntityManager
         Entity::registerEntity(Creeper::class, false, ['morph_creeper']);
         Entity::registerEntity(Donkey::class, false, ['morph_donkey']);
         Entity::registerEntity(ElderGuardian::class, false, ['morph_elderguardian']);
+        Entity::registerEntity(EnderDragon::class, false, ['morph_enderdragon']);
         Entity::registerEntity(Enderman::class, false, ['morph_enderman']);
         Entity::registerEntity(Endermite::class, false, ['morph_endermite']);
         Entity::registerEntity(Evoker::class, false, ['morph_evoker']);
