@@ -7,7 +7,7 @@ use Heisenburger69\BurgerMorphs\session\MorphPlayer;
 use Heisenburger69\BurgerMorphs\session\SessionManager;
 use Heisenburger69\BurgerMorphs\pocketmine\PacketHandler;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
-use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\utils\TextFormat as C;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
@@ -56,12 +56,28 @@ class EventListener implements Listener
         if($attacked instanceof MorphEntity) {
             $player = $attacked->getPlayer();
             $session = SessionManager::getSessionByPlayer($player);
-            $session->unMorph();
-            $player->attack(new EntityDamageByEntityEvent($attacker, $player, $event->getCause(), $event->getBaseDamage(), $event->getModifiers(), $event->getKnockBack()));
+            if(Main::getInstance()->getConfig()->getNested("pvp.disable-attacked")) {
+                if($attacker instanceof Player) $attacker->sendMessage(C::colorize(Main::getInstance()->getConfig()->getNested("messages.morph-attacked")));
+                $event->setCancelled();
+                return;
+            }
+            if(Main::getInstance()->getConfig()->getNested("pvp.unmorph-on-attack")) {
+                $session->unMorph();
+                $player->attack(new EntityDamageByEntityEvent($attacker, $player, $event->getCause(), $event->getBaseDamage(), $event->getModifiers(), $event->getKnockBack()));
+                return;
+            }
         }
         if($attacker instanceof Player) {
             $session = SessionManager::getSessionByPlayer($attacker);
-            $session->unMorph();
+            if($session->isMorphed() && Main::getInstance()->getConfig()->getNested("pvp.disable-attacking")) {
+                $attacker->sendMessage(C::colorize(Main::getInstance()->getConfig()->getNested("messages.morph-attacking")));
+                $event->setCancelled();
+                return;
+            }
+            if(Main::getInstance()->getConfig()->getNested("pvp.unmorph-on-attack")) {
+                $session->unMorph();
+                return;
+            }
         }
     }
 }

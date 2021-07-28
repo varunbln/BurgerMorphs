@@ -48,7 +48,7 @@ class MorphPlayer
             $session->sendQueuedPackets();
         });
         $this->handler = $task->getHandler();
-        Main::getInstance()->getScheduler()->scheduleRepeatingTask($task, 2);
+        Main::getInstance()->getScheduler()->scheduleRepeatingTask($task, 1);
     }
 
     /**
@@ -92,6 +92,11 @@ class MorphPlayer
         }
         $this->morphEntity = null;
         return true;
+    }
+
+    public function isMorphed(): bool
+    {
+        return $this->morphEntity !== null;
     }
 
     public function sendQueuedPackets(): void

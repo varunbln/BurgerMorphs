@@ -12,7 +12,7 @@ abstract class Form implements IForm{
     /** @var array */
     protected array $data = [];
     /** @var callable */
-    private Callable $callable;
+    private $callable;
 
     /**
      * @param callable $callable

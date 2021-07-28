@@ -1,0 +1,34 @@
+# These are the configuration options available for BurgerMorphs
+# Change these to make the plugin best suit your server
+
+# These are settings for the Morph
+entity:
+  # If this is true, the nametag of the player is displayed over the Morph. Upside down Morphs will however not work if this is set to true.
+  nametags: false
+  # This is the scale factor that the baby version will be smaller by
+  # For example, at 2, the baby will be half the size of the adult
+  baby: 2
+
+# These are several PvP related settings for when the player is Morphed
+pvp:
+  # If this is true, whenever a Morphed player is attacks or is attacked, he is automatically unmorphed
+  unmorph-on-attack: true
+  # If this is true, Morphed players cannot attack other players
+  disable-attacking: false
+  # If this is true, Morphed players cannot be attacked
+  disable-attacked: false
+
+# These are the messages sent by the plugin
+# Use & for color codes
+messages:
+  # This message is sent when a player activates a Morph
+  # {morph} is replaced by the name of the morph, f.e: Zombie
+  morph: "&aYou have been morphed into a {morph}!"
+  # This message is sent when a player deactivates a Morph
+  unmorph: "&aYou have been unmorphed!"
+  # This is the message displayed in the /morph UI
+  form: "&aSelect a new Morph or reset your Morph here."
+  # This is the message sent when a morphed player is attacked if its disabled
+  morph-attacked: "&cYou cannot attack a morphed player!"
+  # This is the message sent when a morphed player attacks another player
+  morph-attack: "&cYou cannot attack players when morphed!"
