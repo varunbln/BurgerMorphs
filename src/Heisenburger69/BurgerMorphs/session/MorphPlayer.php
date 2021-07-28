@@ -4,8 +4,14 @@ namespace Heisenburger69\BurgerMorphs\session;
 
 use Heisenburger69\BurgerMorphs\entity\EntityManager;
 use Heisenburger69\BurgerMorphs\entity\MorphEntity;
+use Heisenburger69\BurgerMorphs\Main;
+use pocketmine\network\mcpe\protocol\MoveActorAbsolutePacket;
 use pocketmine\Player;
+use pocketmine\scheduler\ClosureTask;
+use pocketmine\scheduler\TaskHandler;
 use pocketmine\Server;
+use function count;
+use function var_dump;
 
 class MorphPlayer
 {
@@ -20,12 +26,29 @@ class MorphPlayer
     private ?MorphEntity $morphEntity = null;
 
     /**
+     * @var array
+     */
+    private array $queuedPackets = [];
+
+    /**
+     * @var TaskHandler|null
+     */
+    private ?TaskHandler $handler = null;
+
+    /**
      * MorphPlayer constructor.
      * @param Player $player
      */
     public function __construct(Player $player)
     {
         $this->player = $player;
+        $task = new ClosureTask(function (int $currentTick) use ($player): void
+        {
+            $session = SessionManager::getSessionByPlayer($player);
+            $session->sendQueuedPackets();
+        });
+        $this->handler = $task->getHandler();
+        Main::getInstance()->getScheduler()->scheduleRepeatingTask($task, 2);
     }
 
     /**
@@ -71,6 +94,17 @@ class MorphPlayer
         return true;
     }
 
+    public function sendQueuedPackets(): void
+    {
+        if(count($this->queuedPackets) > 0) Server::getInstance()->batchPackets($this->getMorphEntity()->getViewers(), $this->queuedPackets);
+        $this->queuedPackets = [];
+    }
+
+    public function addPacketToQueue(MoveActorAbsolutePacket $pk): void
+    {
+        $this->queuedPackets[] = $pk;
+    }
+
     /**
      * @return MorphEntity|null
      */
@@ -85,5 +119,10 @@ class MorphPlayer
     private function setMorphEntity(MorphEntity $morphEntity): void
     {
         $this->morphEntity = $morphEntity;
+    }
+
+    public function __destruct()
+    {
+        if($this->handler !== null) $this->handler->cancel();
     }
 }

@@ -40,7 +40,7 @@ class EventListener implements Listener
             $session = SessionManager::getSessionByPlayer($player);
             if ($session === null) return;
             if ($session->getMorphEntity() === null) return;
-            PacketHandler::sendMovePacket($session->getMorphEntity(), $pk);
+            $session->addPacketToQueue(PacketHandler::getMovePacket($session->getMorphEntity(), $pk));
         }
     }
 

@@ -11,8 +11,22 @@ use pocketmine\plugin\PluginBase;
 
 class Main extends PluginBase
 {
+    /**
+     * @var Main
+     */
+    private static Main $instance;
+
+    /**
+     * @return Main
+     */
+    public static function getInstance(): Main
+    {
+        return self::$instance;
+    }
+
     public function onEnable()
     {
+        self::$instance = $this;
         EntityManager::init();
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->getServer()->getCommandMap()->registerAll("burgermorphs",

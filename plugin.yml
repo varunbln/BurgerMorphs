@@ -6,4 +6,9 @@ api: 3.21.0
 author: Heisenburger69
 description: Plugin that allows a player to morph into mobs
 website: "https://github.com/Heisenburger69"
+
+permissions:
+  morph.all:
+    default: op
+    description: "Allows a player access to all available Morphs"
 ...

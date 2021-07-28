@@ -3,12 +3,13 @@
 namespace Heisenburger69\BurgerMorphs\pocketmine;
 
 use Heisenburger69\BurgerMorphs\entity\MorphEntity;
+use pocketmine\network\mcpe\protocol\BatchPacket;
 use pocketmine\network\mcpe\protocol\MoveActorAbsolutePacket;
 use pocketmine\network\mcpe\protocol\MovePlayerPacket;
 
 class PacketHandler
 {
-    public static function sendMovePacket(MorphEntity $entity, MovePlayerPacket $originalPacket): void
+    public static function getMovePacket(MorphEntity $entity, MovePlayerPacket $originalPacket): MoveActorAbsolutePacket
     {
         $pk = new MoveActorAbsolutePacket();
         $pk->entityRuntimeId = $entity->getId();
@@ -19,6 +20,6 @@ class PacketHandler
         if ($originalPacket->mode === MovePlayerPacket::MODE_TELEPORT) {
             $pk->flags |= MoveActorAbsolutePacket::FLAG_TELEPORT;
         }
-        $entity->level->broadcastPacketToViewers($entity, $pk);
+        return $pk;
     }
 }
