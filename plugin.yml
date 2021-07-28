@@ -8,6 +8,9 @@ description: Plugin that allows a player to morph into mobs
 website: "https://github.com/Heisenburger69"
 
 permissions:
+  burgermorphs.adminmorph:
+    default: op
+    description: "Allows a player to morph another player"
   burgermorphs.all:
     default: op
     description: "Allows a player access to all available Morphs"
