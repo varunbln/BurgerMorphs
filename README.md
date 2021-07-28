@@ -31,8 +31,10 @@ Additional morphs can be found by using /morph list
 - `burgermorphs.morph`: Allows a player access to /morph
 - `burgermorphs.all`: Allows a player access to all morphs
 # Showcase
+The /morph UI can be seen below:
 ![Morph UI](meta/UI.png)
-![Morph Recording](https://i.imgur.com/liiYYD1.gif)
+
+For a video recording of the plugin in action, visit https://imgur.com/liiYYD1
 # Note
 - This plugin uses https://github.com/jojoe77777/FormAPI to render forms
 - The Rainbow Sheep morph's upside down version does not work
