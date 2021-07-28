@@ -11,4 +11,7 @@ permissions:
   burgermorphs.all:
     default: op
     description: "Allows a player access to all available Morphs"
+  burgermorphs.morph:
+    default: true
+    description: "Allows a player to use /morph"
 ...

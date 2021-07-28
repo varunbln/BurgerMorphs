@@ -29,7 +29,7 @@ class MorphMenu
                 $session->unMorph();
                 return;
             }
-            if(!$player->hasPermission("burgermorphs.$data")) {
+            if(!$player->hasPermission("burgermorphs.$data") && !$player->hasPermission("burgermorphs.all")) {
                 $player->sendMessage(C::RED . "You do not have permission to use this Morph!");
                 return;
             }
