@@ -45,7 +45,7 @@ class MorphPlayer
         $task = new ClosureTask(function (int $currentTick) use ($player): void
         {
             $session = SessionManager::getSessionByPlayer($player);
-            $session->sendQueuedPackets();
+            if($session !== null) $session->sendQueuedPackets();
         });
         $this->handler = $task->getHandler();
         Main::getInstance()->getScheduler()->scheduleRepeatingTask($task, 1);
