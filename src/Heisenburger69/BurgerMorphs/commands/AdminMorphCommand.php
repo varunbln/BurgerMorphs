@@ -2,14 +2,17 @@
 
 namespace Heisenburger69\BurgerMorphs\commands;
 
+use Heisenburger69\BurgerMorphs\Main;
 use Heisenburger69\BurgerMorphs\session\SessionManager;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\command\PluginIdentifiableCommand;
 use pocketmine\Player;
+use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat as C;
 
-class AdminMorphCommand extends Command
+class AdminMorphCommand extends Command implements PluginIdentifiableCommand
 {
 
     public function __construct(string $name, string $description = "", string $usageMessage = null, array $aliases = [])
@@ -52,5 +55,10 @@ class AdminMorphCommand extends Command
         } else {
             $sender->sendMessage(C::RED . "Given morph could not be found!");
         }
+    }
+
+    public function getPlugin(): Plugin
+    {
+        return Main::getInstance();
     }
 }
