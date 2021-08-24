@@ -32,7 +32,7 @@ Additional morphs can be found by using /morph list
 - `burgermorphs.all`: Allows a player access to all morphs
 # Showcase
 The /morph UI can be seen below:
-![Morph UI](meta/UI.png)
+![Morph UI](https://raw.githubusercontent.com/Heisenburger69/BurgerMorphs/master/meta/UI.png)
 
 For a video recording of the plugin in action, visit https://imgur.com/liiYYD1
 # Note
